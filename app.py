@@ -2,6 +2,7 @@ import asyncio
 import aiohttp
 import json
 import time
+import os
 from urllib.parse import urlparse
 from flask import Flask, request, render_template_string, jsonify, send_file
 
@@ -106,4 +107,6 @@ def index():
     '''
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    # 環境変数PORTを取得し、デフォルトで5000を指定
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=True, host='0.0.0.0', port=port)
